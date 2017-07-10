@@ -20,6 +20,10 @@ export default class TestServiceSaga {
     console.log('Test command request action: ' + JSON.stringify(action));
   }
 
+  *_handleTestCommandError(action) {
+    console.log('Test command error: ' + action.message);
+  }
+
   *rootSaga() {
     yield [
       takeFromEventEmitter(this._client, 'testEvent', actions.testService.testEvent),
@@ -27,6 +31,7 @@ export default class TestServiceSaga {
       requestHandlerSaga(actions.testService.testCommand, [this._client, this._client.testCommand]),
       takeEvery(actions.testService.testCommand.request.type, this._handleTestCommandRequest.bind(this)),
       takeEvery(actions.testService.testCommand.response.type, this._handleTestCommandResponse.bind(this)),
+      takeEvery(actions.testService.testCommand.error.type, this._handleTestCommandError.bind(this)),
     ]
   }
 }

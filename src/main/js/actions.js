@@ -39,6 +39,12 @@ export default {
       response: defineAction({
         type: 'testService.testCommand.response',
         params: testPayloadParams,
+      }),
+      error: defineAction({
+        type: 'testService.testCommand.error',
+        params: {
+          message: required,
+        }
       })
     }
   }
