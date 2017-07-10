@@ -1,0 +1,42 @@
+{
+  "env": {
+    "development": {
+      "application/javascript": {
+        "presets": [
+          [
+            "env",
+            {
+              "targets": {
+                "electron": "1.6"
+              }
+            }
+          ],
+          "react", "es2017-node7"
+        ],
+        "plugins": [
+          "transform-es2015-classes", "transform-async-to-generator", "react-hot-loader/babel"
+        ],
+        "sourceMaps": "inline"
+      }
+    },
+    "production": {
+      "application/javascript": {
+        "presets": [
+          [
+            "env",
+            {
+              "targets": {
+                "electron": "1.6"
+              }
+            }
+          ],
+          "react", "es2017-node7"
+        ],
+        "plugins": [
+          "transform-es2015-classes", "transform-async-to-generator"
+        ],
+        "sourceMaps": "none"
+      }
+    }
+  }
+}
