@@ -26,18 +26,18 @@ export default {
   toggleDevTools: defineAction({
     type: 'toggleDevTools',
   }),
-  backend: {
+  testService: {
     testEvent: defineAction({
-      type: 'testEvent',
+      type: 'testService.testEvent',
       params: testPayloadParams,
     }),
     testCommand: {
       request: defineAction({
-        type: 'backend.testCommand.request',
+        type: 'testService.testCommand.request',
         params: testPayloadParams,
       }),
       response: defineAction({
-        type: 'backend.testCommand.response',
+        type: 'testService.testCommand.response',
         params: testPayloadParams,
       })
     }

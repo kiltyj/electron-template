@@ -38,7 +38,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch, state) => ({
   buttonPressed: () => {
-    dispatch(actions.backend.testCommand.request({integer:4,array:[4,8,12],string:"four",map:{d:[4,3,2,1]}}));
+    dispatch(actions.testService.testCommand.request({integer:4,array:[4,8,12],string:"four",map:{d:[4,3,2,1]}}));
   },
 });
 

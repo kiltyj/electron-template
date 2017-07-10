@@ -22,11 +22,11 @@ export default class TestServiceSaga {
 
   *rootSaga() {
     yield [
-      takeFromEventEmitter(this._client, 'testEvent', actions.backend.testEvent),
-      takeEvery(actions.backend.testEvent.type, this._handleTestEvent.bind(this)),
-      requestHandlerSaga(actions.backend.testCommand, [this._client, this._client.testCommand]),
-      takeEvery(actions.backend.testCommand.request.type, this._handleTestCommandRequest.bind(this)),
-      takeEvery(actions.backend.testCommand.response.type, this._handleTestCommandResponse.bind(this)),
+      takeFromEventEmitter(this._client, 'testEvent', actions.testService.testEvent),
+      takeEvery(actions.testService.testEvent.type, this._handleTestEvent.bind(this)),
+      requestHandlerSaga(actions.testService.testCommand, [this._client, this._client.testCommand]),
+      takeEvery(actions.testService.testCommand.request.type, this._handleTestCommandRequest.bind(this)),
+      takeEvery(actions.testService.testCommand.response.type, this._handleTestCommandResponse.bind(this)),
     ]
   }
 }
