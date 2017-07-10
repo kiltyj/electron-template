@@ -19,4 +19,13 @@ export default {
   toggleDevTools: defineAction({
     type: 'toggleDevTools',
   }),
+  testEvent: defineAction({
+    type: 'testEvent',
+    params: {
+      integer: required,
+      array: optional,
+      string: optional,
+      map: optional,
+    },
+  })
 };
