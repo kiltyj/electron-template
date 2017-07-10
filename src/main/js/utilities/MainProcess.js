@@ -16,6 +16,10 @@ export default class MainProcess {
     this.send('toggle-dev-tools');
   }
 
+  signalReadyToShow() {
+    this.send('ready-to-show');
+  }
+
   resize(w, h, animate, lock) {
     this.send('resize', {w, h, animate, lock});
   }

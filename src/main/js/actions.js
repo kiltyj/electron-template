@@ -18,5 +18,5 @@ export default {
   }),
   toggleDevTools: defineAction({
     type: 'toggleDevTools',
-  })
+  }),
 };

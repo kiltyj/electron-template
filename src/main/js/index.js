@@ -87,7 +87,7 @@ const createWindow = async () => {
     slashes: true
   }));
 
-  mainWindow.once('ready-to-show', () => {
+  ipcMain.once('ready-to-show', () => {
     if (loadingScreen != null) {
       loadingScreen.close();
     }
