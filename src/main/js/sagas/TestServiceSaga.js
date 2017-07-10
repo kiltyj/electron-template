@@ -1,5 +1,6 @@
 import takeFromEventEmitter from '../utilities/takeFromEventEmitter'
 import {takeEvery} from 'redux-saga';
+import requestHandlerSaga from '../utilities/requestHandlerSaga';
 import actions from '../actions';
 
 export default class TestServiceSaga {
@@ -11,10 +12,21 @@ export default class TestServiceSaga {
     console.log('Test event action: ' + JSON.stringify(action));
   }
 
+  *_handleTestCommandResponse(action) {
+    console.log('Test command response action: ' + JSON.stringify(action));
+  }
+
+  *_handleTestCommandRequest(action) {
+    console.log('Test command request action: ' + JSON.stringify(action));
+  }
+
   *rootSaga() {
     yield [
-      takeFromEventEmitter(this._client, 'testEvent', actions.testEvent),
-      takeEvery(actions.testEvent.type, this._handleTestEvent.bind(this)),
+      takeFromEventEmitter(this._client, 'testEvent', actions.backend.testEvent),
+      takeEvery(actions.backend.testEvent.type, this._handleTestEvent.bind(this)),
+      requestHandlerSaga(actions.backend.testCommand, [this._client, this._client.testCommand]),
+      takeEvery(actions.backend.testCommand.request.type, this._handleTestCommandRequest.bind(this)),
+      takeEvery(actions.backend.testCommand.response.type, this._handleTestCommandResponse.bind(this)),
     ]
   }
 }

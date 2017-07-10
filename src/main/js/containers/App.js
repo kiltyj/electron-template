@@ -38,7 +38,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch, state) => ({
   buttonPressed: () => {
-    dispatch(actions.resize({w: 200, h: 200, animate: true}));
+    dispatch(actions.backend.testCommand.request({integer:4,array:[4,8,12],string:"four",map:{d:[4,3,2,1]}}));
   },
 });
 

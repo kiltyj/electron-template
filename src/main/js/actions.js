@@ -1,5 +1,12 @@
 import defineAction, {required, optional} from './utilities/defineAction';
 
+const testPayloadParams = {
+  integer: required,
+  array: optional,
+  string: optional,
+  map: optional,
+};
+
 export default {
   backendPortUpdated: defineAction({
     type: 'backendPortUpdated',
@@ -19,13 +26,20 @@ export default {
   toggleDevTools: defineAction({
     type: 'toggleDevTools',
   }),
-  testEvent: defineAction({
-    type: 'testEvent',
-    params: {
-      integer: required,
-      array: optional,
-      string: optional,
-      map: optional,
-    },
-  })
+  backend: {
+    testEvent: defineAction({
+      type: 'testEvent',
+      params: testPayloadParams,
+    }),
+    testCommand: {
+      request: defineAction({
+        type: 'backend.testCommand.request',
+        params: testPayloadParams,
+      }),
+      response: defineAction({
+        type: 'backend.testCommand.response',
+        params: testPayloadParams,
+      })
+    }
+  }
 };
