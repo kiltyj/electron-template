@@ -3,14 +3,14 @@ import {put, call} from 'redux-saga/effects';
 
 function* handleRequestAction(responseActionCreator, errorActionCreator, handler, action) {
   try {
-    const response = yield call(handler, action);
+    const response = yield call(handler, action.payload);
     yield put(responseActionCreator(response));
   } catch (error) {
     yield put(errorActionCreator({message: error.message}));
   }
 }
 
-export function* handleRequest(requestActionType, responseActionCreator, errorActionCreator, handler) {
+function* handleRequest(requestActionType, responseActionCreator, errorActionCreator, handler) {
   yield* takeEvery(requestActionType, handleRequestAction, responseActionCreator, errorActionCreator, handler);
 }
 

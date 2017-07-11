@@ -25,7 +25,7 @@ export default function *takeFromEventEmitter(eventEmitter: EventEmitter, eventN
       const event = yield take(channel);
       let action;
       if (actionCreator == null) {
-        action = {type: eventName, ...event};
+        action = {type: eventName, payload: event};
       } else {
         action = actionCreator(event);
       }

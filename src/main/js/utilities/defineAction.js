@@ -24,7 +24,10 @@ const createAction = (type, args, params) => {
     if (!param.optional && args[param.name] === undefined) {
       throw new Error('Action ' + type + ' created without arg: ' + param.name);
     }
-    action[param.name] = args[param.name];
+    if (action.payload == null) {
+      action.payload = {};
+    }
+    action.payload[param.name] = args[param.name];
   }
   return action
 };
@@ -39,13 +42,13 @@ const createActionFromParamsMap = (type, args, paramsOptional) => {
   return createAction(type, args, params);
 };
 
-const defineAction = ({type, params}) => {
-  params = params || [];
+const defineAction = ({type, payload}) => {
+  payload = payload || [];
   const actionCreator = function (args) {
-    if (params.constructor === Array) {
-      return createAction(type, args, params);
+    if (payload.constructor === Array) {
+      return createAction(type, args, payload);
     }
-    return createActionFromParamsMap(type, args, params);
+    return createActionFromParamsMap(type, args, payload);
   };
   actionCreator.type = type;
   return actionCreator;

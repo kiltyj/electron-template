@@ -42,7 +42,7 @@ export default class BackendClient extends EventEmitter {
     const res = await fetch(url, request);
     if (res && res.status) {
       let responseObject;
-      let errorParsingResponse;;
+      let errorParsingResponse;
       try {
         responseObject = await res.json();
         errorParsingResponse = false;

@@ -1,6 +1,6 @@
 import defineAction, {required, optional} from './utilities/defineAction';
 
-const testPayloadParams = {
+const testPayload = {
   integer: required,
   array: optional,
   string: optional,
@@ -10,13 +10,13 @@ const testPayloadParams = {
 export default {
   backendPortUpdated: defineAction({
     type: 'backendPortUpdated',
-    params: {
+    payload: {
       port: required,
     }
   }),
   resize: defineAction({
     type: 'resize',
-    params: {
+    payload: {
       w: required,
       h: required,
       animate: optional,
@@ -29,20 +29,20 @@ export default {
   testService: {
     testEvent: defineAction({
       type: 'testService.testEvent',
-      params: testPayloadParams,
+      payload: testPayload,
     }),
     testCommand: {
       request: defineAction({
         type: 'testService.testCommand.request',
-        params: testPayloadParams,
+        payload: testPayload,
       }),
       response: defineAction({
         type: 'testService.testCommand.response',
-        params: testPayloadParams,
+        payload: testPayload,
       }),
       error: defineAction({
         type: 'testService.testCommand.error',
-        params: {
+        payload: {
           message: required,
         }
       })
