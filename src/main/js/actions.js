@@ -1,4 +1,5 @@
 import defineAction, {required, optional} from './utilities/defineAction';
+import defineRequestActions from './utilities/defineRequestActions';
 
 const testPayload = {
   integer: required,
@@ -31,21 +32,10 @@ export default {
       type: 'testService.testEvent',
       payload: testPayload,
     }),
-    testCommand: {
-      request: defineAction({
-        type: 'testService.testCommand.request',
-        payload: testPayload,
-      }),
-      response: defineAction({
-        type: 'testService.testCommand.response',
-        payload: testPayload,
-      }),
-      error: defineAction({
-        type: 'testService.testCommand.error',
-        payload: {
-          message: required,
-        }
-      })
-    }
+    testCommand: defineRequestActions({
+      typePrefix: 'testService.testCommand',
+      requestPayload: testPayload,
+      responsePayload: testPayload,
+    }),
   }
 };

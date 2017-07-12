@@ -1,10 +1,7 @@
 import actions from '../actions';
+import defineReducer from '../utilities/defineReducer';
 
-export default (state = null, action) => {
-  switch (action.type) {
-    case actions.backendPortUpdated.type:
-      return action.payload.port;
-    default:
-      return state;
-  }
-};
+const defaultState = null;
+export default defineReducer(defaultState, {
+  [actions.backendPortUpdated]: (state, {port}) => port,
+});

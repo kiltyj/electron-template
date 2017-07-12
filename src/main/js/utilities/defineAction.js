@@ -5,14 +5,16 @@
  *
  *    const formSubmitted = defineAction({
  *      type: 'FORM_SUBMITTED',
- *      params: {
+ *      payload: {
  *        someParam: required,
  *        otherParam: optional,
  *      }
  *    });
  *
  * This allows actions to be created via formSubmitted({someParam: 'a', otherParam: 123})
- * and referenced (e.g. in reducers switch statements) via formSubmitted.type.
+ * and referenced (e.g. in reducers switch statements) via formSubmitted.type or
+ * formSubmitted.toString(), which also allows redux-saga to (e.g.) take(formSubmitted)
+ * and defined via defineReducer to only need to use (e.g.) formSubmitted.
  */
 
 export const optional = true;
@@ -51,6 +53,7 @@ const defineAction = ({type, payload}) => {
     return createActionFromParamsMap(type, args, payload);
   };
   actionCreator.type = type;
+  actionCreator.toString = () => type;
   return actionCreator;
 };
 

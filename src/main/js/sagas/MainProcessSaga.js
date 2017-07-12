@@ -17,8 +17,8 @@ export default class MainProcessSaga {
 
     yield [
       // Translate actions to IPC calls
-      takeEvery(actions.resize.type, action => this._mainProcess.send('resize', action)),
-      takeEvery(actions.toggleDevTools.type, () => this._mainProcess.send('toggle-dev-tools')),
+      takeEvery(actions.resize, action => this._mainProcess.send('resize', action)),
+      takeEvery(actions.toggleDevTools, () => this._mainProcess.send('toggle-dev-tools')),
     ];
   }
 }
