@@ -8,6 +8,7 @@ import {createStore, applyMiddleware, compose} from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import rootReducer from './reducers';
 import isDev from 'electron-is-dev';
+import {ipcRenderer} from 'electron';
 
 const render = (store) => {
   const App = require('./containers/App').default;
@@ -47,7 +48,13 @@ const configureStore = async () => {
     }
   }
 
-  sagaMiddleware.run(rootSaga);
+  sagaMiddleware.run(rootSaga).done.catch((e) => {
+    alert('Closing after unhandled critical error: ' + e.message);
+    if (!process.env.DEV && !isDev) {
+      ipcRenderer.send('close');
+    }
+  });
+
   return store;
 };
 

@@ -142,6 +142,10 @@ ipcMain.on('resize', (event, {w, h, animate, lock}) => {
   mainWindow.setFullScreenable(!lock);
 });
 
+ipcMain.on('close', (event) => {
+  mainWindow.close();
+});
+
 ipcMain.on('toggle-dev-tools', () => {
   mainWindow.toggleDevTools();
 });

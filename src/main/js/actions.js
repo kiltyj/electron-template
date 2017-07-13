@@ -9,6 +9,12 @@ const testPayload = {
 };
 
 export default {
+  criticalError: defineAction({
+    type: 'criticalError',
+    payload: {
+      message: required,
+    }
+  }),
   backendPortUpdated: defineAction({
     type: 'backendPortUpdated',
     payload: {
@@ -26,6 +32,9 @@ export default {
   }),
   toggleDevTools: defineAction({
     type: 'toggleDevTools',
+  }),
+  close: defineAction({
+    type: 'close',
   }),
   testService: {
     testEvent: defineAction({

@@ -8,7 +8,11 @@ function* handleRequestAction(responseActionCreator, errorActionCreator, handler
     const response = yield call(handler, payload);
     yield put(responseActionCreator(response));
   } catch (error) {
-    yield put(errorActionCreator({message: error.message}));
+    if (errorActionCreator) {
+      yield put(errorActionCreator({message: error.message}));
+    } else {
+      throw error;
+    }
   }
 }
 
